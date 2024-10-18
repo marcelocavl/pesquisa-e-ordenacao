@@ -1,6 +1,8 @@
 import numpy as np
 
 def selectionSort(lista,x=0):
+	if len(lista)==1 or len(lista)==0:
+		return lista
 	aux=0
 	parcela=lista[x:len(lista)]
 	minimo=np.min(parcela)
