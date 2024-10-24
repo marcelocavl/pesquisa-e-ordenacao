@@ -1,29 +1,33 @@
 import numpy as np
 
-def selectionSort(lista,x=0):
-	if len(lista)==1 or len(lista)==0:
+
+def selectionSortCurrent(lista,index,indexCurrent,indexMenor):
+	if indexCurrent>=np.size(lista):	
+		aux=lista[indexMenor]	
+		lista[indexMenor]=lista[index]
+		lista[index]=aux
 		return lista
-	aux=0
-	parcela=lista[x:len(lista)]
-	minimo=np.min(parcela)
-	aux=parcela[np.argmin(parcela)]
-	parcela[np.argmin(parcela)]=parcela[0]
-	parcela[0]=aux
-	lista[x:len(lista)]=parcela
-	if x== len(lista)-2:
-		return lista	
-	x+=1
-	return selectionSort(lista,x)
-
-
-	
-	
+	if lista[indexCurrent]<lista[indexMenor]:
+		indexMenor=indexCurrent
+	indexCurrent+=1
+	return selectionSortCurrent(lista,index,indexCurrent,indexMenor)
 	
 
 
 
-lista=np.random.randint(0,10,5)
+
+def selectionSort(lista,index):
+	if index==np.size(lista)-1:
+		return lista
+	lista=selectionSortCurrent(lista,index,index+1,index)
+	index+=1
+	return selectionSort(lista,index)
+
+
+
+
+
+lista=np.random.randint(0,100,10)
 print(lista)
-lista=selectionSort(lista)
+selectionSort(lista,0)
 print(lista)
-
