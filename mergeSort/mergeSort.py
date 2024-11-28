@@ -1,4 +1,6 @@
 import numpy as np
+import time
+import sys
 
 	
 
@@ -29,13 +31,14 @@ def merge(array,mid,final):
 		k+=1
 	return array
 
-#lista=np.random.randint(0,100,8)
-lista=np.random.randint(0,200,15)
-print(str(np.size(lista)))
-#mid=np.size(lista)//2
-#mid-=1
-#merge(lista,mid,nd.size(lista)-1)
+sys.setrecursionlimit(3000)
+
+lista=np.random.randint(0,100000,100000)
+print(lista)
+inicio=time.time()
 lista=mergeAll(lista)
+fim=time.time()
+print(fim-inicio)
 print(lista)
 
 
